@@ -29,7 +29,6 @@ encapsulated package Bowling
       
   equation
       
-      der(th) = der(mod(atan(w_y/w_x),3.1415926535*2));
       der(x) = v_x;
       der(y) = v_y;
       der(v_x) = -mu*g*((v_x - r*w_y)/sqrt((v_x-r*w_y)^2+(v_y+r*w_x)^2));
@@ -41,7 +40,7 @@ encapsulated package Bowling
       -der(w_x)*sin(th)+der(w_y)*cos(th) = (1/I_y)*(m*r*(-der(v_y)*sin(th)-der(v_x)*cos(th))+(I_z - I_x)*(w_x*cos(th)+w_y*sin(th)*w_z));
       //Equation 14
       der(w_z) = ((I_x - I_y)/I_z)*(w_x*cos(th)+w_y*sin(th))*(-w_x*sin(th)+w_y*cos(th));
-      
+      der(th) = der(atan(w_y/w_x));
       //if y < 40 then
       //  mu = 0.04;
       //else
