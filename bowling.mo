@@ -18,6 +18,9 @@ encapsulated package Bowling
       Velocity v_b_x;
       Velocity v_b_y;
       Velocity v_b;
+      Torque t_x;
+      Torque t_y;
+      Torque t_z;
       Angle th(start=(1.8*(3.1415926535/180)));
       parameter Real RG = 6.35/100;
       parameter Real Diff = 0.1/100;
@@ -52,6 +55,10 @@ encapsulated package Bowling
       der(w_z) = ((I_x - I_y)/I_z)*(w_x*cos(th)+w_y*sin(th))*(-w_x*sin(th)+w_y*cos(th));
       //Equation 15
       der(th) = der(atan(w_y/w_x));
+  
+      t_x = I_x*der(w_x)-(I_y-I_z)*w_y*w_z;
+      t_y = I_y*der(w_y)-(I_z-I_x)*w_z*w_x;
+      t_z = I_z*der(w_z)-(I_x-I_y)*w_x*w_y;
   
       if y < 12.192 then
         mu = 0.04;
