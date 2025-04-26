@@ -30,24 +30,30 @@ encapsulated package Bowling
       Real mu(start = 0.02);
       constant Real g = 9.8;
   equation
-  
+      //Equation 1
       v_b_x = v_x-r*w_y;
+      //Equation 2
       v_b_y = v_y+r*w_x;
+      //Equation 3
       v_b = sqrt(v_b_x^2+v_b_y^2);
+      //Implicit Equation
       der(x) = v_x;
+      //Implicit Equation
       der(y) = v_y;
+      //Equation 10
       der(v_x) = -mu*g*(v_b_x/v_b);
+      //Equation 11
       der(v_y) = -mu*g*(v_b_y/v_b);
-      //der(th)=(der(w_y)*w_x-der(w_x)*w_y)/(w_y^2+w_x^2);
+      //Equation 12
       der(w_x)*cos(th)+der(w_y)*sin(th) = (1/I_x)*(m*r*(der(v_y)*cos(th)+der(v_x)*sin(th))+(I_y - I_z)*(-w_x*sin(th)+w_y*cos(th))*w_z);
       //Equation 13
       -der(w_x)*sin(th)+der(w_y)*cos(th) = (1/I_y)*(m*r*(-der(v_y)*sin(th)-der(v_x)*cos(th))+(I_z - I_x)*(w_x*cos(th)+w_y*sin(th))*w_z);
       //Equation 14
       der(w_z) = ((I_x - I_y)/I_z)*(w_x*cos(th)+w_y*sin(th))*(-w_x*sin(th)+w_y*cos(th));
+      //Equation 15
       der(th) = der(atan(w_y/w_x));
-      //der(th)=(der(w_y)*w_x-der(w_x)*w_y)/(w_y^2+w_x^2);
   
-          if y < 12.192 then
+      if y < 12.192 then
         mu = 0.04;
       else
         mu = 0.2;
